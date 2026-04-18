@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           xmlns:common="http://msb.com.vn/common"
+           xmlns:model="http://msb.com.vn/model"
+           attributeFormDefault="unqualified"
+           elementFormDefault="unqualified"
+           jaxb:extensionBindingPrefixes="xjc"
+           jaxb:version="2.1"
+           targetNamespace="http://msb.com.vn/model"
+>
+    <xs:annotation>
+        <xs:documentation>Contains Application data</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://msb.com.vn/common" schemaLocation="MSB_COMMON.xsd"/>
+    <!-- version 0  -->
+    <xs:element name="message" type="model:Message"/>
+
+    <xs:complexType name="Message">
+        <xs:complexContent>
+            <xs:extension base="common:MessageAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="application" type="model:Application"/>
+                    <xs:element minOccurs="0" name="modelAcceptBeforeModelFlow" type="xs:string"/>
+                    <xs:element minOccurs="0" name="flagAcceptModel" type="xs:string"/>
+                    <xs:element minOccurs="0" name="modelFlowPoint" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Application">
+        <xs:complexContent>
+            <xs:extension base="common:ApplicationAbstract">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="applicants" type="model:Applicant"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="requestedProducts" type="model:ProductData"/>
+                    <xs:element minOccurs="1" name="applicationInfo" type="model:ApplicationInfo"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Applicant">
+        <xs:complexContent>
+            <xs:extension base="common:ApplicantAbstract">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="referenceInfo" type="common:ReferenceInfo"/>
+                    <xs:element minOccurs="0" name="cicData" type="model:CICData"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="modelInfo" type="model:ModelInfo"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="leadModelInfo" type="model:LeadModelInfo"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="modelOutputs" type="common:ModelOutput"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="internalDatas" type="model:InternalDatas"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="cspInfo" type="model:CspInfo"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CICData">
+        <xs:complexContent>
+            <xs:extension base="common:CICDataAbstract">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="s11TReport" type="common:S11TReport"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="f5Report" type="common:F5Report"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="f6Report" type="common:F6Report"/>
+                    <xs:element minOccurs="0" name="f16Report" type="common:F16Report"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ModelInfo">
+        <xs:complexContent>
+            <xs:extension base="common:ModelInfoAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="flagExecuteStatus" type="xs:string"/>
+                    <xs:element minOccurs="1" name="custID" type="xs:string"/>
+                    <xs:element minOccurs="1" name="modelGroupName" type="xs:string"/>
+                    <xs:element minOccurs="1" name="subModelInfo" type="model:SubModelInfo"/>
+                    <xs:element minOccurs="0" name="loanMethodRequest" type="xs:string"/>
+                    <xs:element minOccurs="0" name="productCategoryRequest" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SubModelInfo">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="subModelTypeRel" type="common:SubModelTypeRel"/>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="subModelCriterionMaps" type="common:SubModelCriterionMap"/>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="subModelAffectResults" type="common:SubModelAffectResult"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LeadModelInfo">
+        <xs:complexContent>
+            <xs:extension base="common:LeadModelInfoAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="recommendation" type="xs:string"/>
+                    <xs:element minOccurs="1" name="finalScore" type="xs:double"/>
+                    <xs:element minOccurs="1" name="modelGroupName" type="xs:string"/>
+                    <xs:element minOccurs="1" name="loanMethod" type="xs:string"/>
+                    <xs:element minOccurs="1" name="productCategory" type="xs:string"/>
+                    <xs:element minOccurs="1" name="typeOfModel" type="xs:string"/>
+                    <xs:element minOccurs="1" name="scoringDate" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ProductData">
+        <xs:complexContent>
+            <xs:extension base="common:ProductDataAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="productPurpose" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ApplicationInfo">
+        <xs:complexContent>
+            <xs:extension base="common:ApplicationInfoAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cspCount" type="xs:int"/>
+                    <xs:element minOccurs="1" name="applicationCodeMBA" type="xs:string"/>
+                    <xs:element minOccurs="0" name="applicationCodeCSP" type="xs:string"/>
+                    <xs:element minOccurs="0" name="flagApplyNextModel" type="xs:int"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CspInfo">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="increaseLimitPercent" type="xs:double"/>
+            <xs:element minOccurs="1" name="loanType" type="xs:string"/>
+            <xs:element minOccurs="0" name="purposeScoring" type="xs:string"/>
+            <xs:element minOccurs="0" name="partnerType" type="xs:string"/>
+            <xs:element minOccurs="0" name="turnoverEnt" type="xs:double"/>
+            <xs:element minOccurs="0" name="customerType" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InternalDatas">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="CUIF001" type="xs:string"/>
+            <xs:element minOccurs="0" name="THIN107" type="xs:double"/>
+            <xs:element minOccurs="0" name="THCA025" type="xs:double"/>
+            <xs:element minOccurs="0" name="THFD029" type="xs:double"/>
+            <xs:element minOccurs="0" name="THCA031" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN080" type="xs:int"/>
+            <xs:element minOccurs="0" name="THIN081" type="xs:int"/>
+            <xs:element minOccurs="0" name="THIN082" type="xs:int"/>
+            <xs:element minOccurs="0" name="THCA030" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN001" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN025" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN026" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN027" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN028" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN029" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN030" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN031" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN032" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN033" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN231" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN232" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN233" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN234" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN235" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT001" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT029" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT032" type="xs:double"/>
+            <xs:element minOccurs="0" name="THCA048" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT227" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN227" type="xs:double"/>
+            <xs:element minOccurs="0" name="OTAD001" type="xs:string"/>
+            <xs:element minOccurs="0" name="OTAD002" type="xs:string"/>
+            <xs:element minOccurs="0" name="OTAD003" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL001" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL002" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL003" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL004" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL005" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL006" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL025" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL026" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL027" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL028" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL029" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL030" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL076" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL001" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL002" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL003" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL004" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL005" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL006" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL008" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF021" type="xs:string"/>
+            <xs:element minOccurs="0" name="CUIF042" type="xs:string"/>
+            <xs:element minOccurs="0" name="CUIF044" type="xs:string"/>
+            <xs:element minOccurs="0" name="CUIF041" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC001" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC025" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIOD001" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIOD025" type="xs:double"/>
+            <xs:element minOccurs="0" name="LILN001" type="xs:double"/>
+            <xs:element minOccurs="0" name="LILN025" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL030" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIPL003" type="xs:string"/>
+            <xs:element minOccurs="0" name="THIN104" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN111" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT025" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT028" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT080" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT104" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT107" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT111" type="xs:double"/>
+            <xs:element minOccurs="0" name="THCA001" type="xs:double"/>
+            <xs:element minOccurs="0" name="THCA027" type="xs:double"/>
+            <xs:element minOccurs="0" name="THCA029" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF050" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF040" type="xs:int"/>
+            <xs:element minOccurs="0" name="CUIF053" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF051" type="xs:string"/>
+            <xs:element minOccurs="0" name="THFD025" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIFNO" type="xs:double"/>
+            <xs:element minOccurs="0" name="CURE001" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL027" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL028" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL085" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC085" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL018" type="xs:double"/>
+            <xs:element minOccurs="0" name="OTHS022" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC049" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL049" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC073" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC081" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL019" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL073" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL029" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC090" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL081" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC093" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL094" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC083" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL024" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIPL001" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL093" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL096" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIBA013" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL091" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL017" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIOD049" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF055" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC087" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIOD081" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL021" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL023" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL009" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC096" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC095" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIOD088" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL013" type="xs:double"/>
+            <xs:element minOccurs="0" name="THDI007" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL090" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC076" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC088" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC089" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIOD073" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL026" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL087" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC094" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIOD076" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF054" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIBA012" type="xs:double"/>
+            <xs:element minOccurs="0" name="DISB007" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL007" type="xs:double"/>
+            <xs:element minOccurs="0" name="LILN079" type="xs:double"/>
+            <xs:element minOccurs="0" name="THDI003" type="xs:double"/>
+            <xs:element minOccurs="0" name="OTHS016" type="xs:double"/>
+            <xs:element minOccurs="0" name="CIAL031" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL095" type="xs:double"/>
+            <xs:element minOccurs="0" name="THDI001" type="xs:double"/>
+            <xs:element minOccurs="0" name="THDI002" type="xs:double"/>
+            <xs:element minOccurs="0" name="DISB001" type="xs:double"/>
+            <xs:element minOccurs="0" name="DISB008" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL089" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIAL092" type="xs:double"/>
+            <xs:element minOccurs="0" name="LIBL016" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC091" type="xs:double"/>
+            <xs:element minOccurs="0" name="LICC092" type="xs:double"/>
+            <xs:element minOccurs="0" name="LILN089" type="xs:int"/>
+            <xs:element minOccurs="0" name="LICC097" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX001" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX002" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX003" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX004" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX005" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX006" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX007" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX008" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX009" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX010" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX011" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX012" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX013" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX014" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX015" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX016" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX017" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX018" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX019" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX020" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX021" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX022" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX023" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX024" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX025" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX026" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX027" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX028" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX029" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX030" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX031" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX032" type="xs:double"/>
+            <xs:element minOccurs="0" name="TOIX033" type="xs:double"/>
+            <xs:element minOccurs="0" name="BOND001" type="xs:double"/>
+            <xs:element minOccurs="0" name="BOND002" type="xs:double"/>
+            <xs:element minOccurs="0" name="BOND003" type="xs:double"/>
+            <xs:element minOccurs="0" name="BOND004" type="xs:double"/>
+            <xs:element minOccurs="0" name="BOND005" type="xs:int"/>
+            <xs:element minOccurs="0" name="TOIX034" type="xs:double"/>
+            <xs:element minOccurs="0" name="THCA033" type="xs:double"/>
+            <xs:element minOccurs="0" name="THFD001" type="xs:double"/>
+            <xs:element minOccurs="0" name="THFD027" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN034" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN036" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN105" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN108" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN113" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN115" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN236" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIN237" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIO003" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIO005" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIO010" type="xs:double"/>
+            <xs:element minOccurs="0" name="THIO020" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT026" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT034" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT036" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT105" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT108" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT113" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT115" type="xs:double"/>
+            <xs:element minOccurs="0" name="THOT117" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF052" type="xs:int"/>
+            <xs:element minOccurs="0" name="CUIF056" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF035" type="xs:int"/>
+            <xs:element minOccurs="0" name="LIAL101" type="xs:int"/>
+            <xs:element minOccurs="0" name="LIAL102" type="xs:int"/>
+            <xs:element minOccurs="0" name="LIAL098" type="xs:string"/>
+            <xs:element minOccurs="0" name="THIN268" type="xs:int"/>
+            <xs:element minOccurs="0" name="CUIF026" type="xs:double"/>
+            <xs:element minOccurs="0" name="CUIF005" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

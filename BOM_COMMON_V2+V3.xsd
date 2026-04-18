@@ -1,0 +1,2547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           xmlns:common="http://msb.com.vn/common"
+           attributeFormDefault="unqualified"
+           elementFormDefault="unqualified"
+           jaxb:extensionBindingPrefixes="xjc"
+           jaxb:version="2.1"
+           targetNamespace="http://msb.com.vn/common"
+>
+    <xs:annotation>
+        <xs:documentation>Contains Application data</xs:documentation>
+    </xs:annotation>
+    <!-- version 8  -->
+    <xs:complexType name="MessageAbstract" abstract="true">
+        <xs:sequence>
+            <!--            <xs:element minOccurs="0" name="application" type="common:ApplicationAbstract"/>-->
+            <xs:element minOccurs="0" name="blazeRequestTime" type="xs:string"/>
+            <xs:element minOccurs="0" name="blazeResponseTime" type="xs:string"/>
+            <xs:element minOccurs="0" name="blazeElapsedTime" type="xs:int"/>
+            <xs:element minOccurs="0" name="callType" type="common:EnumCallType"/>
+            <xs:element minOccurs="1" name="systemFlow" type="common:EnumSystemFlow"/>
+            <xs:element minOccurs="0" name="decheckPoint" type="xs:string"/>
+            <xs:element minOccurs="0" name="isAuditDataOn" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="source" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseCode" type="common:EnumResponseCode"/>
+            <xs:element minOccurs="0" name="adbVersionInfo" type="common:ADBVersionInfo"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="error" type="common:DeError"/>
+            <xs:element minOccurs="0" name="blazeDMPSIterationCount" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ApplicationAbstract" abstract="true"/>
+    <xs:complexType name="ApplicationInfoAbstract" abstract="true">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="applicationDeRefNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="source" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicationCodeBPM" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicationFlow" type="common:EnumApplicationFlowType"/>
+            <xs:element minOccurs="1" name="applicationCreatedTime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="applicationSaleId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ApplicantAbstract" abstract="true">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="applicantType" type="common:EnumApplicantType"/>
+            <xs:element minOccurs="1" name="customerSegment" type="common:EnumCustomerSegment"/>
+            <xs:element minOccurs="1" name="applicantName" type="xs:string"/>
+            <xs:element minOccurs="0" name="cifNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="dateOfBirth" type="xs:date"/>
+            <xs:element minOccurs="0" name="age" type="xs:double"/>
+            <xs:element minOccurs="1" name="gender" type="common:EnumGender"/>
+            <xs:element minOccurs="1" name="nationality" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="identities" type="common:CustomerIdentificationData"/>
+            <xs:element minOccurs="1" name="phoneNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="emailID" type="xs:string"/>
+            <xs:element minOccurs="1" name="maritalStatus" type="common:EnumMaritalStatus"/>
+            <xs:element minOccurs="0" name="job" type="xs:string"/>
+            <xs:element minOccurs="0" name="agencyPosition" type="xs:string"/>
+            <xs:element minOccurs="1" name="isMSB" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="branchCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="region" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="address" type="common:Address"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="incomeDetails" type="common:IncomeDetails"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="thirdSystemScores" type="common:ThirdSystemScore"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LeadDetail">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="leadId" type="xs:string"/>
+            <xs:element minOccurs="1" name="code" type="xs:string"/>
+            <xs:element minOccurs="1" name="leadName" type="xs:string"/>
+            <xs:element minOccurs="1" name="leadType" type="xs:string"/>
+            <xs:element minOccurs="0" name="leadLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="creditCardLimit" type="xs:double"/>
+            <xs:element minOccurs="1" name="effectiveDate" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="expireDate" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="casaInfo" type="common:CasaInfo"/>
+            <xs:element minOccurs="0" name="totalProposalLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="creditODLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="creditLoanLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanPurpose" type="xs:string"/>
+            <xs:element minOccurs="0" name="productODCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="productLoanCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="productCCCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="productInfo" type="xs:string"/>
+            <xs:element minOccurs="0" name="maxCreditLimitTenor" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxODLimitTenor" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanLimitTenor" type="xs:double"/>
+            <xs:element minOccurs="0" name="interestRateCodeOD" type="xs:string"/>
+            <xs:element minOccurs="0" name="interestRateMarginOD" type="xs:double"/>
+            <xs:element minOccurs="0" name="interestRateCodeLoan" type="xs:string"/>
+            <xs:element minOccurs="0" name="interestRateMarginLoan" type="xs:double"/>
+            <xs:element minOccurs="0" name="dti" type="xs:double"/>
+            <xs:element minOccurs="0" name="mue" type="xs:double"/>
+            <xs:element minOccurs="0" name="productSolutionCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="ceilingLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="productODInfo" type="xs:string"/>
+            <xs:element minOccurs="0" name="ceilingLimitMAUM" type="xs:double"/>
+            <xs:element minOccurs="0" name="idBestOffer" type="xs:string"/>
+            <xs:element minOccurs="0" name="interestRateLoan" type="xs:double"/>
+            <xs:element minOccurs="0" name="interestRateOD" type="xs:double"/>
+            <xs:element minOccurs="0" name="productLoanInfo" type="xs:string"/>
+            <xs:element minOccurs="0" name="documentCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="purpose" type="xs:string"/>
+            <xs:element minOccurs="0" name="maxTotalLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="dra" type="xs:double"/>
+            <xs:element minOccurs="0" name="layer" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LeadModelInfoAbstract" abstract="true">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="rank" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelTypeCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelInfoCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="rankOrder" type="xs:int"/>
+            <xs:element minOccurs="1" name="expireDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="custId" type="xs:string"/>
+            <xs:element minOccurs="0" name="cifNumber" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CasaInfo">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="incomePolicyCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="salaryMsb01" type="xs:double"/>
+            <xs:element minOccurs="1" name="salaryMsb02" type="xs:double"/>
+            <xs:element minOccurs="1" name="salaryMsb03" type="xs:double"/>
+            <xs:element minOccurs="1" name="casaBalance01" type="xs:double"/>
+            <xs:element minOccurs="1" name="casaBalance02" type="xs:double"/>
+            <xs:element minOccurs="1" name="casaBalance03" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ProductDataAbstract" abstract="true">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="applicationParentCode" type="common:EnumLoanType"/>
+            <xs:element minOccurs="0" name="productCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="productCategory" type="xs:string"/>
+            <xs:element minOccurs="0" name="regulationCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="productClass" type="xs:string"/>
+            <xs:element minOccurs="0" name="proposedAmountOrLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanProposeMonth" type="xs:int"/>
+            <xs:element minOccurs="0" name="approvalFlow" type="common:EnumApprovalFlowType"/>
+            <xs:element minOccurs="0" name="loanMethod" type="xs:string"/>
+            <xs:element minOccurs="0" name="productPackage" type="common:EnumProductPackage"/>
+            <xs:element minOccurs="0" name="loanSecure" type="common:EnumLoanSecure"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ReferenceInfo">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="referenceRelationship" type="common:EnumRelationshipType"/>
+            <xs:element minOccurs="1" name="referenceName" type="xs:string"/>
+            <xs:element minOccurs="1" name="referencePhone" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Address">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="addressType" type="xs:string"/>
+            <xs:element minOccurs="0" name="provinceCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="provinceName" type="xs:string"/>
+            <xs:element minOccurs="0" name="districtCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="districtName" type="xs:string"/>
+            <xs:element minOccurs="1" name="street" type="xs:string"/>
+            <xs:element minOccurs="0" name="wardCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="wardName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IncomeDetails">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="incomeMonth" type="xs:int"/>
+            <xs:element minOccurs="1" name="incomeType" type="common:EnumIncomeType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="C06Data">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="cardNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="status" type="xs:int"/>
+            <xs:element minOccurs="1" name="message" type="xs:string"/>
+            <xs:element minOccurs="1" name="oldIdCardNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="address" type="xs:string"/>
+            <xs:element minOccurs="1" name="placeOfOrigin" type="xs:string"/>
+            <xs:element minOccurs="1" name="motherName" type="xs:string"/>
+            <xs:element minOccurs="1" name="spouseName" type="xs:string"/>
+            <xs:element minOccurs="1" name="fatherName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Way4Data">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="code" type="xs:int"/>
+            <xs:element minOccurs="1" name="requestTimeStamp" type="xs:string"/>
+            <xs:element minOccurs="1" name="message" type="xs:string"/>
+            <xs:element minOccurs="1" name="contractNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="contractStatus" type="xs:string"/>
+            <xs:element minOccurs="1" name="contractStatusCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="dateOpen" type="xs:string"/>
+            <xs:element minOccurs="1" name="productCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="contractLimit" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OPRiskData">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="blackListLosP" type="common:BlackListLosP"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BlackListLosP">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="address" type="xs:string"/>
+            <xs:element minOccurs="1" name="branchInput" type="xs:string"/>
+            <xs:element minOccurs="1" name="cusId" type="xs:string"/>
+            <xs:element minOccurs="1" name="dateEx" type="xs:date"/>
+            <xs:element minOccurs="1" name="dateInput" type="xs:date"/>
+            <xs:element minOccurs="1" name="dob" type="xs:date"/>
+            <xs:element minOccurs="1" name="dscn" type="xs:string"/>
+            <xs:element minOccurs="1" name="dtcn" type="xs:string"/>
+            <xs:element minOccurs="1" name="errorMess" type="xs:string"/>
+            <xs:element minOccurs="1" name="id" type="xs:string"/>
+            <xs:element minOccurs="1" name="inputUser" type="xs:string"/>
+            <xs:element minOccurs="1" name="name" type="xs:string"/>
+            <xs:element minOccurs="1" name="recordId" type="xs:string"/>
+            <xs:element minOccurs="1" name="result" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="version" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="A05Data">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="responseCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="responseMessage" type="xs:string"/>
+            <xs:element minOccurs="1" name="accountNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="accountName" type="xs:string"/>
+            <xs:element minOccurs="1" name="riskLevel" type="common:EnumA05RiskLevel"/>
+            <xs:element minOccurs="1" name="message" type="xs:string"/>
+            <xs:element minOccurs="1" name="requestId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CICDataAbstract" abstract="true"/>
+
+    <xs:complexType name="F16Report">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="cicCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="badDebtLast24Months" type="xs:string"/>
+            <xs:element minOccurs="1" name="maxCardPaymentDelayDaysLast24Months" type="xs:int"/>
+            <xs:element minOccurs="1" name="mostRecent12MonthDebtGroup" type="xs:string"/>
+            <xs:element minOccurs="1" name="maxCardPaymentDelayDaysLast12Months" type="xs:int"/>
+            <xs:element minOccurs="1" name="isGroup2DebtOrAboveLast12Months" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isBadDebtLast24Months" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isCicOutstandingInfo" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="F5OrF16Report">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="reportDate" type="xs:date"/>
+            <xs:element minOccurs="1" name="transactionTime" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="codemessage" type="xs:string"/>
+            <xs:element minOccurs="1" name="taxNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="businessRegistrationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerIdentificationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="cicCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="address" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerName" type="xs:string"/>
+            <xs:element minOccurs="1" name="phoneNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="directorName" type="xs:string"/>
+            <xs:element minOccurs="1" name="financialYear" type="xs:string"/>
+            <xs:element minOccurs="1" name="note" type="xs:string"/>
+            <xs:element minOccurs="1" name="clientQuestionID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="f5OrF16DerivedVariables"
+                        type="common:F5OrF16DerivedVariables"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="F5Report">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="clientQuestionID" type="xs:string"/>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="reportDate" type="xs:date"/>
+            <xs:element minOccurs="1" name="transactionTime" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="codeMessage" type="xs:string"/>
+            <xs:element minOccurs="1" name="taxNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="businessRegistrationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerIdentificationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="cicCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="address" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerName" type="xs:string"/>
+            <xs:element minOccurs="1" name="phoneNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="directorName" type="xs:string"/>
+            <xs:element minOccurs="1" name="financialYear" type="xs:string"/>
+            <xs:element minOccurs="1" name="note" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="f5DerivedVariables" type="common:F5DerivedVariables"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="F6Report">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="reportDate" type="xs:date"/>
+            <xs:element minOccurs="1" name="taxNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="businessRegistrationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerIdentificationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="cicCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="address" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerName" type="xs:string"/>
+            <xs:element minOccurs="1" name="phoneNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="directorName" type="xs:string"/>
+            <xs:element minOccurs="1" name="financialYear" type="xs:string"/>
+            <xs:element minOccurs="1" name="note" type="xs:string"/>
+            <xs:element minOccurs="1" name="clientQuestionID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="f6DerivedVariables" type="common:F6DerivedVariables"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="B11TReport">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="reportDate" type="xs:date"/>
+            <xs:element minOccurs="1" name="taxNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="businessRegistrationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerIdentificationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="cicCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="address" type="xs:string"/>
+            <xs:element minOccurs="1" name="customerName" type="xs:string"/>
+            <xs:element minOccurs="1" name="phoneNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="directorName" type="xs:string"/>
+            <xs:element minOccurs="1" name="financialYear" type="xs:string"/>
+            <xs:element minOccurs="1" name="note" type="xs:string"/>
+            <xs:element minOccurs="1" name="clientQuestionID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="b11DerivedVariables"
+                        type="common:B11TDerivedVariables"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="S11TReport">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="s11TDerivedVariables"
+                        type="common:S11TDerivedVariables"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="F5OrF16DerivedVariables">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="cICInquiryCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="oldCustomerId" type="xs:string"/>
+            <xs:element minOccurs="0" name="oldCustomerIdSbv" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryProductCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryStatus" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="currentDebtGroup" type="xs:int"/>
+            <xs:element minOccurs="0" name="badDebtLast24Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="highestBadDebtGroupL36M" type="xs:int"/>
+            <xs:element minOccurs="0" name="creditCardOverdueDaysL36M" type="xs:int"/>
+            <xs:element minOccurs="0" name="numMonthsGroup2DebtL12M" type="xs:int"/>
+            <xs:element minOccurs="0" name="numInstitutionsWithBadDebtL36M" type="xs:int"/>
+            <xs:element minOccurs="0" name="monthsSinceLastBadDebt36M" type="xs:int"/>
+            <xs:element minOccurs="0" name="numBanksWithLoansL12M" type="xs:int"/>
+            <xs:element minOccurs="0" name="nonBankLoanCountL12Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="numDaysLateL12Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="creditInstitutionCardCountBeforeScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="bankCardInstitutionCountMonthBeforeScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="currentLoanType" type="xs:string"/>
+            <xs:element minOccurs="0" name="unsecuredLoanBankCount" type="xs:int"/>
+            <xs:element minOccurs="0" name="unsecuredLoanNonBankInstitutionCount" type="xs:int"/>
+            <xs:element minOccurs="0" name="bankCardCountL3MBeforeScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="nonBankCardInstitutionCountL3MPriorToScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="cardOutstandingBalance" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalCreditLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="monthsAboveAvgBalanceL12MScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="customerBadDebtCategoryL12MPriorScoring" type="xs:string"/>
+            <xs:element minOccurs="0" name="overdueDebtsInL12MBeforeScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="numBankInquiries6MonthsPriorScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="numNonBankInquiries6MonthsPriorScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="numBankLoanRelationships3MonthsPriorScoring" type="xs:int"/>
+            <xs:element minOccurs="0" name="currentLoanProduct" type="xs:int"/>
+            <xs:element minOccurs="0" name="numFinancialCompanyLoansLast12Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="avgOutstandingBalance12MonthsPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxOutstandingCreditCardBalanceL12M" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalSecuredLoanBalanceVND" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalSecuredLoanBalanceUSD" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalUnsecuredLoanBalance" type="xs:int"/>
+            <xs:element minOccurs="0" name="numBankInquiries12MonthsReset3Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="creditInquiryToLoanInstitutionDifference12Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="hasCICInfoLast12Months" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="averageCreditCardLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="ccBalanceGrowthL6MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="ccBalanceGrowthL3MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="ccBalanceGrowthL1MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCreditCardUtilizationPerInstitution" type="xs:double"/>
+            <xs:element minOccurs="0" name="currentCreditCardUtilization" type="xs:double"/>
+            <xs:element minOccurs="0" name="ccBalanceL1MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanAndCardBalance12MonthsPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxCreditCardBalanceL3MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCreditCardBalanceMonthsT12ToT7PriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="monthsWithBalanceAboveAvgFixed6" type="xs:int"/>
+            <xs:element minOccurs="0" name="maxCCBalanceL6MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxNonBankCCBalanceL6MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxNonBankCCBalanceL12MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanAndCardBalanceNonBankL12MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCreditCardBalanceL12MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="creditInquiryToLoanAccountDifferenceL12M" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceL6MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCCBalanceL6MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingBalanceGrowthL6MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingBalanceL12MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanOutstandingNonBankL12MPriorScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanOutstandingNonBankL6MInquiry" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingBalanceL3MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanOutstandingBalanceL3MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanOutstandingBalanceT12T7Scoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanOutstandingBalanceL6MToL3MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanOutstandingBalanceNonBankL3MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingGrowthL3MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingGrowthL1MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingBalanceL1MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="diffQueriedVsLoanInstitutionsL3MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingBalanceL2MScoring" type="xs:double"/>
+            <xs:element minOccurs="0" name="currentAvgCreditCardOutstandingBalance" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCreditCardOutstandingBalanceL12M" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCreditCardOutstandingBalanceT6T3" type="xs:double"/>
+            <xs:element minOccurs="0" name="numQueriedCreditInstitutionsL12M" type="xs:int"/>
+            <xs:element minOccurs="0" name="diffQueriedVsLoanInstitutionsL6M" type="xs:int"/>
+            <xs:element minOccurs="0" name="numQueriedInstitutionsL12M" type="xs:int"/>
+            <xs:element minOccurs="0" name="loanAndCardOutstandingBalanceTwoMonthsPrior" type="xs:int"/>
+            <xs:element minOccurs="0" name="loanCardOutstandingBalanceL12M" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingBalanceL11M" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanCardOutstandingBalanceL6M" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxLoanCardOutstandingBalanceL3M" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanCardOutstandingBalanceL1M" type="xs:double"/>
+            <xs:element minOccurs="0" name="monthlyRepaymentWithCollateralExclMsbVnd" type="xs:double"/>
+            <xs:element minOccurs="0" name="monthlyRepaymentWithoutCollateralExclMsbVnd" type="xs:double"/>
+            <xs:element minOccurs="0" name="currentPrincipalWithCollateralExclMsbVnd" type="xs:double"/>
+            <xs:element minOccurs="0" name="currentPrincipalWithoutCollateralExclMsbVnd" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalCreditCardLimitExclMsb" type="xs:double"/>
+            <xs:element minOccurs="0" name="financialInstitutionsCreditCardLimits" type="xs:string"/>
+            <xs:element minOccurs="0" name="creditCardIssuanceMonthsByBranchLast12Months" type="xs:string"/>
+            <xs:element minOccurs="0" name="averageCreditCardBalanceByBranchLast6Months" type="xs:string"/>
+            <xs:element minOccurs="0" name="maxCardPaymentDelayDaysLast24Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="mostRecent12MonthDebtGroup" type="xs:int"/>
+            <xs:element minOccurs="0" name="activeLoanOrCardInstitutionCount" type="xs:int"/>
+            <xs:element minOccurs="0" name="maxLoanCardOutstandingNonBank3Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="maxLoanCardOutstandingNonBank6Months" type="xs:int"/>
+            <xs:element minOccurs="0" name="bankInquiryCountLast12Months" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="F5DerivedVariables">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="CICD001" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD003" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD004" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD005" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD006" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD007" type="xs:date"/>
+            <xs:element minOccurs="0" name="CICD194" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD196" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD072" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD089" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD147" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD073" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD156" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD113" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD114" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD183" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD084" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD129" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD053" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD111" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD112" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD127" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD128" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD080" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD082" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD180" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD078" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD010" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD188" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD189" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD117" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD092" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD095" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD139" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD164" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD197" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD198" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD199" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD218" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD223" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD187" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="CICD176" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD138" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD137" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD136" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD086" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD085" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD040" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD170" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD166" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD134" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD181" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD165" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD168" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD167" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD173" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD131" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD209" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD140" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD132" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD146" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD022" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD161" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD162" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD013" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD141" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD142" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD143" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD163" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD145" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD144" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD011" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD207" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD012" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD177" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD178" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD135" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD206" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD222" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD221" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD098" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD108" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD021" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD171" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD172" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD097" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD236" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD237" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD238" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD239" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD240" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD241" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD242" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD243" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD244" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD195" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD091" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD175" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD174" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD184" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD014" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD015" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD016" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD041" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD042" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD043" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD044" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD045" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD099" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD100" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD101" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD102" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD201" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD202" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD203" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD204" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD205" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD185" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD255" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD258" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD271" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD273" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD274" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD208" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD253" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="F6DerivedVariables">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="cICInquiryCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="oldCustomerId" type="xs:string"/>
+            <xs:element minOccurs="0" name="oldCustomerIdSbv" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryProductCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryStatus" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="financialInstitutionsWithCustomerCollateral" type="xs:string"/>
+            <xs:element minOccurs="0" name="CICD259" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD261" type="xs:int"/>
+            <xs:element minOccurs="0" name="CICD262" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD260" type="xs:double"/>
+            <xs:element minOccurs="0" name="CICD288" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="B11TDerivedVariables">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="cICInquiryCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="oldCustomerId" type="xs:string"/>
+            <xs:element minOccurs="0" name="oldCustomerIdSbv" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryProductCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryStatus" type="xs:string"/>
+            <xs:element minOccurs="0" name="inquiryDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="totalDebtOutstandingBalance" type="xs:string"/>
+            <xs:element minOccurs="0" name="numFIsBranchesCustomerHasRelationshipWith" type="xs:int"/>
+            <xs:element minOccurs="0" name="isSpecialMentionLoan" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="isNonPerformingLoan" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="isGroup5OrVAMCorOtherBadDebts" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="numFIsBranchesCustomerHas" type="xs:int"/>
+            <xs:element minOccurs="0" name="numFIsBranchesWithNPLs" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="S11TDerivedVariables">
+        <xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ExistingLoanContractDetails">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="loanDetails" type="common:LoanDetails"/>
+            <xs:element minOccurs="1" name="contractID" type="xs:string"/>
+            <xs:element minOccurs="1" name="cif" type="xs:string"/>
+            <xs:element minOccurs="1" name="acfStatus" type="xs:string"/>
+            <xs:element minOccurs="1" name="expiryDate" type="xs:date"/>
+            <xs:element minOccurs="1" name="amountApproved" type="xs:double"/>
+            <xs:element minOccurs="1" name="approvalTime" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="secured" type="xs:string"/>
+            <xs:element minOccurs="1" name="collatcodeFlag" type="xs:string"/>
+            <xs:element minOccurs="1" name="revolNonRevol" type="xs:string"/>
+            <xs:element minOccurs="1" name="gttt" type="xs:string"/>
+            <xs:element minOccurs="1" name="sourceSystem" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ExistingODContractDetails">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="overdraftDetails" type="common:OverdraftDetails"/>
+            <xs:element minOccurs="1" name="contractID" type="xs:string"/>
+            <xs:element minOccurs="1" name="sourceSystem" type="xs:string"/>
+            <xs:element minOccurs="1" name="cifNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="overdraftLimit" type="xs:double"/>
+            <xs:element minOccurs="1" name="secured" type="xs:string"/>
+            <xs:element minOccurs="1" name="collatcodeFlag" type="xs:string"/>
+            <xs:element minOccurs="1" name="overdraftExpiryDate" type="xs:date"/>
+            <xs:element minOccurs="1" name="gttt" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicationCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="approvalTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ExistingCardContractDetails">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="cardDetails" type="common:CardDetails"/>
+            <xs:element minOccurs="1" name="sourceSystem" type="xs:string"/>
+            <xs:element minOccurs="1" name="contractID" type="xs:string"/>
+            <xs:element minOccurs="1" name="contractNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="authLimitAmount" type="xs:double"/>
+            <xs:element minOccurs="1" name="gttt" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicationCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="secured" type="xs:string"/>
+            <xs:element minOccurs="1" name="collatcodeFlag" type="xs:string"/>
+            <xs:element minOccurs="1" name="approvalTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LoanDetails">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="cifNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="loanAccountNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="productCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="productInfo" type="xs:string"/>
+            <xs:element minOccurs="1" name="paymentCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="amount" type="xs:double"/>
+            <xs:element minOccurs="1" name="outstandingBalance" type="xs:double"/>
+            <xs:element minOccurs="1" name="paymentAmt" type="xs:double"/>
+            <xs:element minOccurs="1" name="remainingMonths" type="xs:int"/>
+            <xs:element minOccurs="1" name="limitTerm" type="xs:int"/>
+            <xs:element minOccurs="1" name="disbursedAmt" type="xs:double"/>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="sourceSystem" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OverdraftDetails">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="cifNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="overdraftAccount" type="xs:string"/>
+            <xs:element minOccurs="1" name="overdraftOutstandingBalance" type="xs:double"/>
+            <xs:element minOccurs="1" name="productCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="productInfo" type="xs:string"/>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="sourceSystem" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CardDetails">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="cifNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+            <xs:element minOccurs="1" name="productCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="productInfo" type="xs:string"/>
+            <xs:element minOccurs="1" name="sourceSystem" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AccountDetails">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="cifNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="avgCreditTxnLast6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCasaBalanceLast3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgFdBalanceLast12Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCasaChangeRecentVsPreviousMonth" type="xs:double"/>
+            <xs:element minOccurs="0" name="incomingTxnCountT1" type="xs:int"/>
+            <xs:element minOccurs="0" name="incomingTxnCountT2" type="xs:int"/>
+            <xs:element minOccurs="0" name="incomingTxnCountT3" type="xs:int"/>
+            <xs:element minOccurs="0" name="avgCasaBalancePrev12Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="incomingTxnValueT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnLast3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnPrev3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnSamePeriodLastYear3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnLast6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnPrev6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnSamePeriodLastYear6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnLast9Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnLast12Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgIncomingTxnSamePeriodLastYear12Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalCasaInflowLast3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalCasaInflowPrev3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalCasaInflowSamePeriodLastYear3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalCasaInflowLast6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalCasaInflowLast12Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="outflowValueT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgOutflowPrev6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgOutflowLast12Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCasaOwnerAndBusinessPrev3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgDebitTxnOwnerAndBusinessLast3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCreditTxnOwnerAndBusinessLast3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="businessTaxCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="businessName" type="xs:string"/>
+            <xs:element minOccurs="0" name="customerIncome" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalOutstandingDebtT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalOutstandingDebtT2" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalOutstandingDebtT3" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalOutstandingDebtT4" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalOutstandingDebtT5" type="xs:double"/>
+            <xs:element minOccurs="0" name="totalOutstandingDebtT6" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanLimitT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanLimitT2" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanLimitT3" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanLimitT4" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanLimitT5" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanLimitT6" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanUtilizationLast6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceT2" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceT3" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceT4" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceT5" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceT6" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgLoanBalanceLast6Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="segment" type="xs:string"/>
+            <xs:element minOccurs="0" name="hasCollateral" type="xs:string"/>
+            <xs:element minOccurs="0" name="customerSegment" type="xs:string"/>
+            <xs:element minOccurs="0" name="isDfCustomer" type="xs:double"/>
+            <xs:element minOccurs="0" name="creditCardBalanceT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="creditCardLimitT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="overdraftBalanceT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="overdraftLimitT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanOutstandingBalanceT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="loanLimitInT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="maxOverdueDaysT1" type="xs:double"/>
+            <xs:element minOccurs="0" name="plnMostRecentMonth" type="xs:string"/>
+            <xs:element minOccurs="0" name="avgCreditTransactionsCASALast3MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCreditTransactionsCASALast12MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCashOutflowCASALast3MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCashOutflowCASALast6MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="noDebitTransactionsCASAMonthTMinus1" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgDebitTransactionsCASALast3MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgDebitTransactionsCASALast6MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgDebitTransactionsCASALast12MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCASABalanceMonthTMinus1" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCASABalanceLast6MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgCASABalanceLast12MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="avgBondBalanceLast3MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="transactionSize" type="xs:int"/>
+            <xs:element minOccurs="0" name="avgIncomeMpayrollLast3Months" type="xs:double"/>
+            <xs:element minOccurs="0" name="newEconomicSegmentRB" type="xs:string"/>
+            <xs:element minOccurs="0" name="avgFDBalanceLast3MonthsMSB" type="xs:double"/>
+            <xs:element minOccurs="0" name="cifCustomerDataByTable" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CustomerIdentificationData">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="isMainIdentification" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isValid" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="identificationNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="placeOfIssue" type="xs:string"/>
+            <xs:element minOccurs="1" name="dateOfIssue" type="xs:date"/>
+            <xs:element minOccurs="1" name="dateOfExpire" type="xs:date"/>
+            <xs:element minOccurs="1" name="identificationTypeMain" type="common:EnumIdentificationType"/>
+            <xs:element minOccurs="1" name="identificationSource" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AMLData">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="slNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="amlPassListName" type="xs:string"/>
+            <xs:element minOccurs="1" name="amlListName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FraudRuleData">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="msbBankingData" type="common:MsbBankingData"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="msbRbApprovalData" type="common:MsbRbApprovalData"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="msbCapitalData" type="common:MsbCapitalData"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MsbBankingData">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="cif" type="xs:string"/>
+            <xs:element minOccurs="1" name="name" type="xs:string"/>
+            <xs:element minOccurs="1" name="nameCln" type="xs:string"/>
+            <xs:element minOccurs="1" name="contactType" type="xs:string"/>
+            <xs:element minOccurs="1" name="contactInfo" type="xs:string"/>
+            <xs:element minOccurs="1" name="contactInfoCln" type="xs:string"/>
+            <xs:element minOccurs="1" name="sourceSystem" type="common:EnumSourceSystem"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MsbRbApprovalData">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="cif" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicationCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="name" type="xs:string"/>
+            <xs:element minOccurs="1" name="nameCln" type="xs:string"/>
+            <xs:element minOccurs="1" name="phone" type="xs:string"/>
+            <xs:element minOccurs="1" name="phoneCln" type="xs:string"/>
+            <xs:element minOccurs="1" name="relationCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MsbCapitalData">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="msbEquity" type="xs:string"/>
+            <xs:element minOccurs="1" name="effectiveDate" type="xs:string"/>
+            <xs:element minOccurs="1" name="status" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ThirdSystemScore">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="scoreType" type="common:EnumScoreType"/>
+            <xs:element minOccurs="1" name="partnerStatus" type="xs:string"/>
+            <xs:element minOccurs="1" name="partnerCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="partnerDesc" type="xs:string"/>
+            <xs:element minOccurs="1" name="score" type="xs:double"/>
+            <xs:element minOccurs="1" name="version" type="xs:string"/>
+            <xs:element minOccurs="1" name="risks" type="xs:string"/>
+            <xs:element minOccurs="1" name="responseTime" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="trackingId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OverdueAccountDetail">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="cif" type="xs:string"/>
+            <xs:element minOccurs="1" name="accountNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="accountType" type="xs:string"/>
+            <xs:element minOccurs="1" name="balancePdday" type="xs:string"/>
+            <xs:element minOccurs="1" name="interestPdday" type="xs:string"/>
+            <xs:element minOccurs="1" name="finalPdday" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DerivedVariablesAbstract" abstract="true">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="isMfirst" type="xs:string"/>
+            <xs:element minOccurs="1" name="isCbnv" type="xs:string"/>
+            <xs:element minOccurs="1" name="isCbnvMsb" type="xs:string"/>
+            <xs:element minOccurs="1" name="isCbnvTng" type="xs:string"/>
+            <xs:element minOccurs="1" name="isAml" type="xs:string"/>
+            <xs:element minOccurs="1" name="isBlackList" type="xs:string"/>
+            <xs:element minOccurs="1" name="isWatchList" type="xs:string"/>
+            <xs:element minOccurs="1" name="isBlockList" type="xs:string"/>
+            <xs:element minOccurs="1" name="isWarningList" type="xs:string"/>
+            <xs:element minOccurs="1" name="isNoncreditList" type="xs:string"/>
+            <xs:element minOccurs="1" name="isDebtMgnt" type="xs:string"/>
+            <xs:element minOccurs="1" name="isMpayroll3M" type="xs:string"/>
+            <xs:element minOccurs="1" name="isAccountActive3M" type="xs:string"/>
+            <xs:element minOccurs="1" name="isCreditRelation3M" type="xs:string"/>
+            <xs:element minOccurs="1" name="isCreditRelation6M" type="xs:string"/>
+            <xs:element minOccurs="1" name="isCreditRelationCur" type="xs:string"/>
+            <xs:element minOccurs="1" name="nonCreditRelationM" type="xs:double"/>
+            <xs:element minOccurs="1" name="creditTrans3M" type="xs:int"/>
+            <xs:element minOccurs="1" name="incomeByModel" type="xs:double"/>
+            <xs:element minOccurs="1" name="convertedIncome" type="xs:double"/>
+            <xs:element minOccurs="1" name="netSalaryT1" type="xs:double"/>
+            <xs:element minOccurs="1" name="netSalaryT2" type="xs:double"/>
+            <xs:element minOccurs="1" name="netSalaryT3" type="xs:double"/>
+            <xs:element minOccurs="1" name="minNetSalary3M" type="xs:double"/>
+            <xs:element minOccurs="1" name="pctNetSalaryChange3M" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgNetSalary3M" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgCasaBalT1" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgCasaBalT2" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgCasaBalT3" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgCasaBal3M" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgCreditTrans3M" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgFdBal6M" type="xs:double"/>
+            <xs:element minOccurs="1" name="creditAmt6M" type="xs:double"/>
+            <xs:element minOccurs="1" name="mpayroll3MConsecM" type="xs:double"/>
+            <xs:element minOccurs="1" name="mpayroll3MM" type="xs:double"/>
+            <xs:element minOccurs="1" name="avgCasaBal6M" type="xs:double"/>
+            <xs:element minOccurs="1" name="totalLimit" type="xs:double"/>
+            <xs:element minOccurs="1" name="evaluationPeriodLDZ" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CalculatedVariables">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="fieldName" type="xs:string"/>
+            <xs:element minOccurs="1" name="fieldType" type="xs:string"/>
+            <xs:element minOccurs="1" name="fieldValue" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ModelInfoAbstract" abstract="true">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="loanMethod" type="xs:string"/>
+            <xs:element minOccurs="1" name="productCategory" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicantId" type="xs:string"/>
+            <xs:element minOccurs="1" name="cifNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelInfoCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelSequenceNo" type="xs:int"/>
+            <xs:element minOccurs="1" name="modelTypeCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="typeOfModel" type="xs:string"/>
+            <xs:element minOccurs="1" name="typeOfSegment" type="xs:string"/>
+            <xs:element minOccurs="1" name="segmentResult" type="xs:int"/>
+            <xs:element minOccurs="1" name="mlFlg" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="custId" type="xs:string"/>
+            <xs:element minOccurs="1" name="isOverride" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isTolerance" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isSubAffect" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isModelAuto" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="subModelType" type="xs:string"/>
+            <xs:element minOccurs="1" name="overrideToleranceSub" type="xs:string"/>
+            <xs:element minOccurs="1" name="isSegmentModel" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="modelCategory" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelTypeScoreDirection" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="modelVariable" type="common:ModelVariable"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="modelTypeQuesGroup" type="common:ModelTypeQuesGroup"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="scoringConstantsArr" type="common:ScoringConstant"/>
+            <xs:element minOccurs="1" name="isNextModel" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="modelResult" type="common:ModelResult"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SubModelTypeRel">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="subModelTypeCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="affectType" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SubModelCriterionMap">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="principalCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="subScore" type="xs:double"/>
+            <xs:element minOccurs="1" name="subRank" type="xs:double"/>
+            <xs:element minOccurs="1" name="subQuestionCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="answerValue" type="xs:string"/>
+            <xs:element minOccurs="1" name="reasonCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SubModelAffectResult">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="principalCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="scoreAfterSub" type="xs:double"/>
+            <xs:element minOccurs="1" name="rankAfterSub" type="xs:double"/>
+            <xs:element minOccurs="1" name="affectScoreType" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ModelVariable">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="questionCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="answerValue" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelTypeCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelTypeQuesCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="calculateLevel" type="xs:int"/>
+            <xs:element minOccurs="1" name="modelTypeQuesGroup" type="xs:string"/>
+            <xs:element minOccurs="1" name="weight" type="xs:double"/>
+            <xs:element minOccurs="1" name="mean" type="xs:double"/>
+            <xs:element minOccurs="1" name="std" type="xs:double"/>
+            <xs:element minOccurs="1" name="isSubAccompany" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isTolerance" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="toleranceValue" type="xs:double"/>
+            <xs:element minOccurs="1" name="isToleranceApplied" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="toleranceUnit" type="xs:string"/>
+            <xs:element minOccurs="1" name="overrideDirection" type="xs:string"/>
+            <xs:element minOccurs="1" name="isOverride" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isOverrideApplied" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="overrideType" type="xs:string"/>
+            <xs:element minOccurs="1" name="overrideValue" type="xs:double"/>
+            <xs:element minOccurs="1" name="mlQuestionCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="numericAnswer" type="xs:double"/>
+            <xs:element minOccurs="1" name="dateAnswer" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="booleanAnswer" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="stringAnswer" type="xs:string"/>
+            <xs:element minOccurs="1" name="partialScore" type="xs:double"/>
+            <xs:element minOccurs="1" name="intOrRealAnswer" type="xs:double"/>
+            <xs:element minOccurs="1" name="standardizeScore" type="xs:double"/>
+            <xs:element minOccurs="1" name="reasonCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="answerOrder" type="xs:int"/>
+            <xs:element minOccurs="1" name="scoreOrder" type="xs:int"/>
+            <xs:element minOccurs="1" name="rankOrder" type="xs:int"/>
+            <xs:element minOccurs="1" name="overridenRank" type="xs:int"/>
+            <xs:element minOccurs="1" name="ansDataType" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ModelTypeQuesGroup">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="code" type="xs:string"/>
+            <xs:element minOccurs="1" name="name" type="xs:string"/>
+            <xs:element minOccurs="1" name="weight" type="xs:double"/>
+            <xs:element minOccurs="1" name="mean" type="xs:double"/>
+            <xs:element minOccurs="1" name="std" type="xs:double"/>
+            <xs:element minOccurs="1" name="stepFinal" type="xs:string"/>
+            <xs:element minOccurs="1" name="score" type="xs:double"/>
+            <xs:element minOccurs="1" name="standardizeScore" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ModelResult">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="modelTypeScoreDirection" type="xs:string"/>
+            <xs:element minOccurs="1" name="overrideLevel" type="xs:string"/>
+            <xs:element minOccurs="1" name="overrideValue" type="xs:integer"/>
+            <xs:element minOccurs="1" name="specializedBank" type="xs:string"/>
+            <xs:element minOccurs="1" name="stepFinal" type="xs:double"/>
+            <xs:element minOccurs="1" name="score" type="xs:double"/>
+            <xs:element minOccurs="1" name="scorePD" type="xs:double"/>
+            <xs:element minOccurs="1" name="uncalibratedPD" type="xs:double"/>
+            <xs:element minOccurs="1" name="calibratedPD" type="xs:double"/>
+            <xs:element minOccurs="1" name="finalScore" type="xs:double"/>
+            <xs:element minOccurs="1" name="rank" type="xs:string"/>
+            <xs:element minOccurs="1" name="rankOrder" type="xs:int"/>
+            <xs:element minOccurs="1" name="recommendation" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="productClass" type="xs:string"/>
+            <xs:element minOccurs="1" name="resultStatusCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="expiryDate" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="isModelSelected" type="xs:boolean"/>
+            <!-- 07112025 #385 redmine ticket  -->
+            <xs:element minOccurs="1" name="scoringDate" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="standardizeScore" type="xs:double"/>
+            <!-- 04112025 #313 redmine ticket  -->
+            <xs:element minOccurs="1" name="isOverride" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isTolerance" type="xs:boolean"/>
+            <xs:element minOccurs="1" name="isSubAffect" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ModelOutput">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="rank" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelTypeCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="productCategory" type="xs:string"/>
+            <xs:element minOccurs="1" name="rankOrder" type="xs:int"/>
+            <xs:element minOccurs="1" name="modelGroupName" type="xs:string"/>
+            <xs:element minOccurs="1" name="typeOfModel" type="xs:string"/>
+            <xs:element minOccurs="1" name="loanMethod" type="xs:string"/>
+            <xs:element minOccurs="1" name="recommendation" type="xs:string"/>
+            <xs:element minOccurs="1" name="finalScore" type="xs:double"/>
+            <xs:element minOccurs="1" name="scoringDate" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="specializedBank" type="xs:string"/>
+            <xs:element minOccurs="1" name="custId" type="xs:string"/>
+            <xs:element minOccurs="1" name="cifNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="isModelSelected" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="modelInfoCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ScoringConstant">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="constantCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="constantValue" type="xs:double"/>
+            <xs:element minOccurs="1" name="constantOrder" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UWCriteria">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="action" type="common:EnumDecisionOutcome"/>
+            <xs:element minOccurs="1" name="reasonCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="reasonDescription" type="xs:string"/>
+            <xs:element minOccurs="1" name="ruleCategory" type="xs:string"/>
+            <xs:element minOccurs="1" name="ruleID" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicantType" type="common:EnumApplicantType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DeError">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="errorCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="errorDescription" type="xs:string"/>
+            <xs:element minOccurs="1" name="source" type="xs:string"/>
+            <xs:element minOccurs="1" name="dateTime" type="xs:string"/>
+            <xs:element minOccurs="1" name="trace" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ADBVersionInfo">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="releaseDate" type="xs:string"/>
+            <xs:element minOccurs="1" name="versionNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="releaseNotes" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="EnumResponseCode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCESS">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="SUCCESS"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ERROR">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="ERROR"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumApplicantType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PRIMARY">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="PRIMARY"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SPOUSE">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="SPOUSE"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SECONDARY">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="SECONDARY"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumEmploymentSegment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SALARIED">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="SALARIED"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="HOUSEWIFE_RETIRED">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="HOUSEWIFE_RETIRED"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="NON_SALARIED">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="NON_SALARIED"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumCallType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DP_PreBureau">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_PreBureau"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_PostBureau">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_PostBureau"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_ModelExecution">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_ModelExecution"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_IncomeAndLimit">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_IncomeAndLimit"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_BatchPolicy">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_BatchPolicy"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_PrescreenExecution">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_PrescreenExecution"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_PrescreenOverride">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_PrescreenOverride"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_SegExecution">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_SegExecution"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_NextModelExecution">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_NextModelExecution"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_Post3rd">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_Post3rd"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DP_PostCredit3rd">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DP_PostCredit3rd"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumSystemFlow">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VALIDATION_STP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="VALIDATION_STP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REALTIME_STP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="REALTIME_STP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BATCH_STP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="BATCH_STP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REALTIME_NONSTP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="REALTIME_NONSTP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BATCH_NONSTP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="BATCH_NONSTP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="REALTIME_STP_PARTNER">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="REALTIME_STP_PARTNER"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumCustomerSegment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="V003">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V003"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V004">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V004"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V005">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V005"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V006">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V006"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V001">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V001"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V002">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V002"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V007">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V007"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumLoanSecure">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="V001">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V001"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V002">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V002"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumProductPackage">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="single">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="single"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="combo">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="combo"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumApprovalFlowType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="autoflow">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="autoflow"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="manualflow">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="manualflow"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="autoFlowBatch">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="autoFlowBatch"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="manualFlowBatch">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="manualFlowBatch"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumLoanType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="V001">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V001"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V002">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V002"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V003">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V003"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumIncomeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="V001">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V001"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V002">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V002"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V003">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V003"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V004">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V004"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V005">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V005"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V006">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V006"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumRelationshipType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="R86">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R86"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R87">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R87"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R88">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R88"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R89">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R89"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R90">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R90"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R91">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R91"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R92">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R92"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R93">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R93"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R94">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R94"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R95">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R95"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R96">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R96"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <!-- Adding missing enum values #367 redmine issue-->
+            <xs:enumeration value="R1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R1"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R2">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R2"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R3">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R3"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R4">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R4"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R5">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R5"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R6">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R6"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R7">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R7"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R8">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R8"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R9">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R9"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R10">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R10"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R11">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R11"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R12">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R12"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R13">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R13"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R14">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R14"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R15">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R15"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R16">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R16"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R17">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R17"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R18">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R18"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R19">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R19"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R20">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R20"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R21">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R21"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R22">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R22"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R23">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R23"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R24">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R24"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R25">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R25"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R26">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R26"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R27">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R27"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R28">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R28"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R29">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R29"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R30">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R30"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R31">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R31"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R32">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R32"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R33">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R33"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R34">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R34"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R35">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R35"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R36">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R36"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R37">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R37"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R38">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R38"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R39">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R39"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R40">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R40"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R41">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R41"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R42">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R42"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R43">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R43"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R44">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R44"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R45">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R45"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R46">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R46"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R47">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R47"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R48">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R48"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R49">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R49"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R50">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R50"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R51">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R51"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R52">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R52"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R53">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R53"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R54">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R54"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R55">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R55"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R56">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R56"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R57">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R57"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R58">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R58"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R59">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R59"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R60">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R60"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R61">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R61"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R62">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R62"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R63">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R63"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R64">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R64"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R65">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R65"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R66">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R66"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R67">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R67"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R68">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R68"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R69">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R69"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R70">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R70"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R71">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R71"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R72">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R72"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R73">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R73"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R74">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R74"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R75">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R75"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R76">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R76"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R77">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R77"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R78">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R78"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R79">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R79"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R80">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R80"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R81">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R81"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R82">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R82"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R83">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R83"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R84">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R84"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R85">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R85"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R97">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R97"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R98">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R98"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R101">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R101"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R102">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R102"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R103">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R103"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R104">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R104"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="R106">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="R106"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V017">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V017"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="V016">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="V016"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumMaritalStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VALUE_1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="VALUE_1"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="VALUE_2">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="VALUE_2"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="VALUE_3">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="VALUE_3"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="VALUE_4">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="VALUE_4"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumGender">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="M">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="M"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="F">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="F"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Others">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="Others"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumIdentificationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IDC">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="IDC"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="PP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="IL">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="IL"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="VS">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="VS"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="COB">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="COB"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SC">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="SC"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BC">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="BC"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BL">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="BL"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BR">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="BR"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OTH">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="OTH"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="IP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="IP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="IA">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="IA"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="IC">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="IC"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CMND">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="CMND"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DL">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="DL"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="CC">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="CC"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OT">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="OT"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumApplicationFlowType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Realtime_PS">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="Realtime_PS"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Realtime_nonPS">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="Realtime_nonPS"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PA">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="PA"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PA_plus">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="PA_plus"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RT_partner">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="RT_partner"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumA05RiskLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RED">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="RED"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="YELLOW">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="YELLOW"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WHITE">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="WHITE"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ORANGE">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="ORANGE"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumSourceSystem">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="WAY4">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="WAY4"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="T24">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="T24"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="IBMB">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="IBMB"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumScoreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Fraud_Score">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="Fraud_Score"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Credit_Score">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="Credit_Score"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EnumDecisionOutcome">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="REJECT">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="REJECT"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FAIL_STP">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="FAIL_STP"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ERROR">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="ERROR"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FraudCheckNotEligible">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="FraudCheckNotEligible"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FraudCheckFail">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="FraudCheckFail"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

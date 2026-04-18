@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+           xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+           xmlns:common="http://msb.com.vn/common"
+           xmlns:realtime="http://msb.com.vn/realtime"
+           attributeFormDefault="unqualified"
+           elementFormDefault="unqualified"
+           jaxb:extensionBindingPrefixes="xjc"
+           jaxb:version="2.1"
+           targetNamespace="http://msb.com.vn/realtime"
+>
+    <xs:annotation>
+        <xs:documentation>Contains Application data</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://msb.com.vn/common" schemaLocation="MSB_COMMON.xsd"/>
+    <!-- version 0  -->
+    <xs:element name="message" type="realtime:Message"/>
+
+    <xs:complexType name="Message">
+        <xs:complexContent>
+            <xs:extension base="common:MessageAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="application" type="realtime:Application"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Application">
+        <xs:complexContent>
+            <xs:extension base="common:ApplicationAbstract">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="applicants" type="realtime:Applicant"/>
+                    <xs:element minOccurs="0" name="applicationDecision" type="realtime:ApplicationDecision"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="requestedProducts"
+                                type="realtime:ProductData"/>
+                    <xs:element minOccurs="1" name="applicationInfo" type="realtime:ApplicationInfo"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Applicant">
+        <xs:complexContent>
+            <xs:extension base="common:ApplicantAbstract">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="referenceInfo" type="common:ReferenceInfo"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="way4Data" type="common:Way4Data"/>
+                    <xs:element minOccurs="0" name="opRiskData" type="common:OPRiskData"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="amlData" type="common:AMLData"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="overdueAccountDetails"
+                                type="common:OverdueAccountDetail"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="fraudRuleData" type="common:FraudRuleData"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="c06Data" type="common:C06Data"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="a05Data" type="common:A05Data"/>
+                    <xs:element minOccurs="0" name="cicData" type="realtime:CICData"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="leadModelInfo" type="realtime:LeadModelInfo"/>
+                    <xs:element minOccurs="0" name="derivedVariables" type="realtime:DerivedVariables"/>
+                    <xs:element minOccurs="0" name="applicantDecision" type="realtime:ApplicantDecision"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="modelInfo" type="realtime:ModelInfo"/>
+                    <xs:element minOccurs="0" name="subModelInfo" type="realtime:ModelInfo"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="leadDetails" type="common:LeadDetail"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="existingLoanContractDetails"
+                                type="common:ExistingLoanContractDetails"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="existingCardContractDetails"
+                                type="common:ExistingCardContractDetails"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="existingODContractDetails"
+                                type="common:ExistingODContractDetails"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="requestedProducts"
+                                type="realtime:ProductData"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="casaAccountDetails" type="common:AccountDetails"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="existingIdentificationData"
+                                type="realtime:LDZIdentificationData"/>
+                    <xs:element minOccurs="0" name="isNTB" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="isSecure" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="partnerLeadDetails" type="realtime:PartnerLeadDetails"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DerivedVariables">
+        <xs:complexContent>
+            <xs:extension base="common:DerivedVariablesAbstract"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CICData">
+        <xs:complexContent>
+            <xs:extension base="common:CICDataAbstract">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="b11TReport" type="common:B11TReport"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="f5OrF16Report" type="common:F5OrF16Report"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" name="f6Report" type="common:F6Report"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="LeadModelInfo">
+        <xs:complexContent>
+            <xs:extension base="common:LeadModelInfoAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="productClass" type="xs:string"/>
+                    <xs:element minOccurs="1" name="effectiveDate" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ProductData">
+        <xs:complexContent>
+            <xs:extension base="common:ProductDataAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="productDecision" type="realtime:ProductDecision"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ModelInfo">
+        <xs:complexContent>
+            <xs:extension base="common:ModelInfoAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="subModelTypeRel" type="common:SubModelTypeRel"/>
+                    <xs:element minOccurs="1" name="subModelCriterionMap" type="common:SubModelCriterionMap"/>
+                    <xs:element minOccurs="1" name="subModelAffectResult" type="common:SubModelAffectResult"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ApplicationInfo">
+        <xs:complexContent>
+            <xs:extension base="common:ApplicationInfoAbstract">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="applicationCodeMBA" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="previousPolicyDecision"
+                                type="realtime:PreviousPolicyDecision"/>
+                    <xs:element minOccurs="1" name="partnerSectorCode" type="xs:string"/>
+                    <xs:element minOccurs="1" name="marketingCampaign" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="LDZIdentificationData">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="openDate" type="xs:date"/>
+            <xs:element minOccurs="1" name="cifNumber" type="xs:string"/>
+            <xs:element minOccurs="1" name="gttt" type="xs:string"/>
+            <xs:element minOccurs="1" name="identificationType" type="common:EnumIdentificationType"/>
+            <xs:element minOccurs="1" name="amlListName" type="xs:string"/>
+            <xs:element minOccurs="1" name="accountNo" type="xs:string"/>
+            <xs:element minOccurs="1" name="cardNo" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PartnerLeadDetails">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="isPartnerLead" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="partnerCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="identificationNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="customerName" type="xs:string"/>
+            <xs:element minOccurs="0" name="expectedMaxCardCreditLimit" type="xs:double"/>
+            <xs:element minOccurs="0" name="partnerSectorCode" type="xs:string"/>
+            <xs:element minOccurs="1" name="riskLevel" type="realtime:EnumPartnerRiskLevel"/>
+            <xs:element minOccurs="0" name="customerType" type="xs:string"/>
+            <xs:element minOccurs="0" name="totalServiceValue" type="xs:double"/>
+            <xs:element minOccurs="1" name="relationshipToServiceUser"
+                        type="realtime:EnumPartnerRelationshipToServiceUser"/>
+            <xs:element minOccurs="1" name="creditLimitPurpose" type="realtime:EnumPartnerCreditLimitPurpose"/>
+            <xs:element minOccurs="1" name="refundMethod" type="realtime:EnumRefundMethod"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="ProductDecision">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="finalDecision" type="xs:string"/>
+            <xs:element minOccurs="1" name="offers" type="realtime:Offer"/>
+            <xs:element minOccurs="1" name="recommendedCreditDecision" type="xs:string"/>
+            <xs:element minOccurs="1" name="dti" type="xs:double"/>
+            <xs:element minOccurs="1" name="mue" type="xs:double"/>
+            <xs:element minOccurs="1" name="dra" type="xs:double"/>
+            <xs:element minOccurs="1" name="minProductLimit" type="xs:double"/>
+            <xs:element minOccurs="1" name="maxProductLimit" type="xs:double"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="uwCriterias" type="common:UWCriteria"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="calculatedVariables"
+                        type="common:CalculatedVariables"/>
+            <xs:element minOccurs="1" name="productFlow" type="xs:string"/>
+            <xs:element minOccurs="0" name="minFirstTransactionAmount" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ApplicationDecision">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="recommendedDecision" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="calculatedVariables"
+                        type="common:CalculatedVariables"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="ruleAuditData" type="realtime:RuleAuditData"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RuleAuditData">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="metaphorName" type="xs:string"/>
+            <xs:element minOccurs="1" name="ruleName" type="xs:string"/>
+            <xs:element minOccurs="1" name="outcome" type="xs:string"/>
+            <xs:element minOccurs="1" name="timeStamp" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PreviousPolicyDecision">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="applicationId" type="xs:string"/>
+            <xs:element minOccurs="1" name="applicantId" type="xs:string"/>
+            <xs:element minOccurs="1" name="phoneNumber" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="uwCriterias" type="common:UWCriteria"/>
+            <xs:element minOccurs="1" name="resultDate" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ApplicantDecision">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="overallScore" type="xs:int"/>
+            <xs:element minOccurs="1" name="recordedIncome" type="xs:double"/>
+            <xs:element minOccurs="1" name="incomeFromModel" type="xs:double"/>
+            <xs:element minOccurs="1" name="modelAcceptBeforeModelFlow" type="xs:string"/>
+            <xs:element minOccurs="1" name="flagAcceptModel" type="xs:string"/>
+            <xs:element minOccurs="1" name="modelFlowPoint" type="xs:string"/>
+            <xs:element minOccurs="1" name="overallModelRating" type="xs:string"/>
+            <xs:element minOccurs="1" name="incomeMethod" type="xs:string"/>
+            <xs:element minOccurs="1" name="conversionMethod" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="calculatedVariables"
+                        type="common:CalculatedVariables"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="leadDetails" type="common:LeadDetail"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Offer">
+        <xs:sequence>
+            <xs:element minOccurs="1" name="approvedCreditOrLoanLimit" type="xs:double"/>
+            <xs:element minOccurs="1" name="approvalTerm" type="xs:int"/>
+            <xs:element minOccurs="1" name="approvalValidity" type="xs:date"/>
+            <xs:element minOccurs="1" name="approvalTime" type="xs:dateTime"/>
+            <xs:element minOccurs="1" name="interestRate" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="EnumPartnerRiskLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RL1">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="RL1"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RL2">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="RL2"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RL3">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="RL3"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EnumPartnerRelationshipToServiceUser">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BM">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="BM"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="HV">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="HV"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BT">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="BT"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EnumPartnerCreditLimitPurpose">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="M01">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="M01"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="M02">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="M02"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EnumRefundMethod">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="A">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="A"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="B">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:typesafeEnumMember name="B"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
